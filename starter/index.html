@@ -25,6 +25,14 @@
           ></textarea>
         </div>
         <div class="card-footer">
+          <!--add the options for user to choose for password-->
+          <p>Password Length:</p>
+          <input type = "range" min="8" max="128" value="8"><br>
+          <p>Choose what you want to include in your password must choose at least 2</p>
+            <input type="checkbox" name="items" id="lcLetters"> Uppercase Characters<br>
+            <input type="checkbox" name="items" id="ucLetters">Lowercase Characters<br>
+            <input type="checkbox" name="items" id="numbers">Numbers<br>
+            <input type="checkbox" name="items" id="sCharaters">Special Characters<br>
           <button id="generate" class="btn">Generate Password</button>
         </div>
       </div>
