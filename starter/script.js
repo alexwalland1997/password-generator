@@ -88,8 +88,11 @@ let upperCasedCharacters = [
   "Z",
 ];
 
-//iniate letiable password
+//iniate variable password and set all requirements to false
 let password = "";
+let requirements = [false,false,false,false];
+let opsChosen = 0;
+
 
 // iniate slider so value can be update when changed and for length of password
 let slider = document.getElementById("range");
@@ -110,9 +113,8 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   //loop until its reached length and randomise which character should be added to password
-  for (let i = 0; i < length; i++) {
+  while (password.length < length){
     let a = Math.floor(Math.random() * 4);
-    console.log(a);
     switch (a) {
       case 0:
         getRandom(lowerCasedCharacters);
@@ -137,11 +139,20 @@ let generateBtn = document.querySelector("#generate");
 function writePassword() {
   //set length to slider value
   length = slider.value;
-  generatePassword();
+  //check no of options chosen 
+  requirements.forEach(checkRequirements);
+  if (opsChosen > 1) {
+    generatePassword();
+    document.getElementById("check").style.color = 'black';
+  } else 
+  {
+    document.getElementById("check").style.color = 'red';
+  }
   let passwordText = document.querySelector("#password");
-  console.log(password);
   passwordText.value = password;
+  //reset password and ops chosen
   password = "";
+  opsChosen = 0;
 }
 
 // Add event listener to generate button and generate password
@@ -150,4 +161,24 @@ generateBtn.addEventListener("click", writePassword);
 //update length 
 slider.oninput = function() {
   characters.innerHTML = this.value;
+}
+
+//update requirements when checkbox is clicked 
+function updateRequirements() {
+  let lCheckBox = document.getElementById("lCharacter");
+  let uCheckBox = document.getElementById("uCharacter");
+  let nCheckBox = document.getElementById("numbers");
+  let sCheckBox = document.getElementById("special");
+
+  requirements[0] = lCheckBox.checked;
+  requirements[1] = uCheckBox.checked;
+  requirements[2] = nCheckBox.checked;
+  requirements[3] = sCheckBox.checked;
+}
+
+//check requirements are met by finding out how many have been chosen
+function checkRequirements(requirement) {
+  if (requirement == true) {
+    opsChosen++;
+  }
 }
