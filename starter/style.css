@@ -97,6 +97,11 @@ button[disabled] {
   float: right;
 }
 
+/*extend the size of the slider to take up more space*/
+.slider {
+  width: 80%;
+}
+
 #password {
   -webkit-appearance: none;
   -moz-appearance: none;
