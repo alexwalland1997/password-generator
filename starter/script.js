@@ -117,16 +117,24 @@ function generatePassword() {
     let a = Math.floor(Math.random() * 4);
     switch (a) {
       case 0:
+        if (requirements[0] == true) {
         getRandom(lowerCasedCharacters);
+        }
         break;
       case 1:
+        if (requirements[1] == true) {
         getRandom(upperCasedCharacters);
+        }
         break;
       case 2:
+        if (requirements[2] == true) {
         getRandom(numericCharacters);
+        }
         break;
       case 3:
+        if (requirements[3] == true) {
         getRandom(specialCharacters);
+        }
         break;
     }
   }
